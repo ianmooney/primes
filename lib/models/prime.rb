@@ -4,8 +4,9 @@ class Prime
 
   class << self
     
-    def all(num_primes = 10)
+    def all
       return @all if @all
+      num_primes = @num_primes || 10
       first_prime = Prime.new(:value => 2)
       @all = (num_primes-1).times.inject([first_prime]) do |primes, i|
         primes << primes.last.next_prime
@@ -21,12 +22,13 @@ class Prime
       "#{int}" + (' ' * (print_width - int.to_s.length))
     end
 
-    def print_table(num_primes = 10)
-      all_primes_string = '  ' + all(num_primes).join(' ')
+    def print_table(num_primes)
+      @num_primes = num_primes
+      all_primes_string = '  ' + all.join(' ')
       puts ''
       puts (' ' * print_width) + all_primes_string
       puts (' ' * print_width) + ('_' * all_primes_string.length)
-      all(num_primes).each do |prime|
+      all.each do |prime|
         puts prime.print_line
       end
       puts ''
