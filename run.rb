@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require './lib/boot.rb'
+require './lib/models/prime.rb'
 
 number_of_primes = (ARGV[0] || 10).to_i
 
