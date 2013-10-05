@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 ACTUAL_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-NON_PRIMES = [0, 1, 4, 6, 8, 9, 10, 12, 14, 15]
 
 describe Prime do
 
@@ -13,7 +12,7 @@ describe Prime do
   
   describe '::is_prime?' do
     context 'not given a prime' do
-      NON_PRIMES.each do |int|
+      [0, 1, 4, 6, 8, 9, 10, 12, 14, 15].each do |int|
         it "is false when given #{int}" do
           expect(Prime.is_prime?(int)).to be_false
         end
@@ -36,6 +35,14 @@ describe Prime do
           expect(prime.next_prime.value).to eq(next_actual_prime)
         end
       end
+    end
+  end
+
+  describe '#print_line' do
+    it 'prints products of multiplying with other primes' do
+      prime = Prime.new(:value => 2)
+      products = ACTUAL_PRIMES.collect {|i| Prime.print_int(i * 2)}
+      expect(prime.print_line).to eq("#{Prime.print_int(2)}| #{products.join(' ')}")
     end
   end
   
