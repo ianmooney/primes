@@ -5,8 +5,8 @@ class Prime
   class << self
     
     def all(count = Prime::DEFAULT_COUNT)
-      primes = [Prime.new(:value => 2)]
-      (count-1).times.inject(primes) do |primes, i|
+      first_prime = Prime.new(:value => 2)
+      (count-1).times.inject([first_prime]) do |primes, i|
         primes << primes.last.next_prime
       end
     end
