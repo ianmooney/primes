@@ -20,7 +20,7 @@ describe Prime do
     end
     context 'given a prime' do
       ACTUAL_PRIMES.each do |int|
-        it "is false when given #{int}" do
+        it "is true when given #{int}" do
           expect(Prime.is_prime?(int)).to be_true
         end
       end
